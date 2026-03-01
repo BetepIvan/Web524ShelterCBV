@@ -87,11 +87,13 @@ DATABASES = {
     'default': {
         'ENGINE': 'mssql',
         'NAME': DATABASE,
+        'USER': USER,
         'PASSWORD': PASSWORD,
         'HOST': HOST,
         'PORT': '',
         'OPTIONS': {
             'driver': DRIVER,
+            'extra_params': 'TrustServerCertificate=yes;', # Важно для локальных серверов
         }
     }
 }
