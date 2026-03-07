@@ -38,8 +38,8 @@ def user_login_view(request):
                 if user.is_active:
                     login(request, user)
                     return HttpResponseRedirect(reverse('dogs:index'))
-                else:
-                    return HttpResponse('Аккаунт неактивен!')
+                return HttpResponse('Аккаунт неактивен!')
+            return HttpResponse('Нет такого пользователя')
     context = {
         'title': 'Авторизация',
         'form': UserLoginForm
@@ -88,19 +88,14 @@ def user_update_view(request):
 @login_required(login_url='users:user_login')
 def user_change_password_view(request):
     user_object = request.user
-
+    form = UserChangePasswordForm(user_object, request.POST)
     if request.method == 'POST':
-        form = UserChangePasswordForm(user_object, request.POST)
         if form.is_valid():
             user_object = form.save()
             update_session_auth_hash(request, user_object)
             messages.success(request, 'Пароль был успешно изменен!')
             return HttpResponseRedirect(reverse('users:user_profile'))
-        else:
-            messages.error(request, 'Не удалось изменить пароль')
-    else:
-        form = UserChangePasswordForm(user_object)  # Создаем пустую форму для GET-запроса
-
+        messages.error(request, 'Не удалось изменить пароль')
     context = {
         'form': form,
         'title': f'Изменить пароль {user_object}',
