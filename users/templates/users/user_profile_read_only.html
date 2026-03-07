@@ -16,14 +16,13 @@
                 <span class="card-text">Телефон: {{user.phone|default:"Не указано"}}</span><br>
                 <span class="card-text">Телеграм: {{user.telegram|default:"Не указано"}}</span><br>
             </div>
-            <div class="card-footer text-end">
-                <button class="btn btn-outline-warning btn-sm float-right">
-                    <a class="btn btn-link" href="{% url 'users:user_update' %}">обновить</a>
-                </button>
-                <button class="btn btn-outline-warning btn-sm float-right">
-                    <a class="btn btn-link" href="{% url 'users:user_change_password' %}">изменить пароль</a>
-                </button>
-            </div>
+                <div class="card-footer text-end">
+                    <div class="d-flex justify-content-end gap-1 flex-wrap">
+                        <a class="btn btn-outline-warning btn-sm" href="{% url 'users:user_update' %}">обновить</a>
+                        <a class="btn btn-outline-warning btn-sm" href="{% url 'users:user_change_password' %}">изменить пароль</a>
+                        <a class="btn btn-outline-warning btn-sm" href="{% url 'users:user_generate_password' %}">сгенерировать пароль</a>
+                    </div>
+                </div>
         </div>
     </div>
 </div>
