@@ -1,6 +1,5 @@
 from django.core.management import BaseCommand
 import pyodbc
-from django.db import connection
 
 from config.settings import USER, PASSWORD, HOST, DRIVER, PAD_DATABASE, DATABASE
 
@@ -12,12 +11,16 @@ class Command(BaseCommand):
                             SERVER={HOST};
                             DATABASE={PAD_DATABASE};
                             UID={USER};
-                            PWD={PASSWORD};;"""
+                            PWD={PASSWORD};"""
         try:
             conn = pyodbc.connect(ConnectionString)
-            conn.autocommit = True
-            conn.execute(fr'CREATE DATABASE {DATABASE};')
         except pyodbc.Error as err:
             print(err)
         else:
-            print(f'База данных {DATABASE} успешно создана')
+            conn.autocommit = True
+            try:
+                conn.execute(fr'CREATE DATABASE {DATABASE};')
+            except pyodbc.Error as err:
+                print(err)
+            else:
+                print(f'База данных {DATABASE} успешно создана')
