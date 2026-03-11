@@ -61,41 +61,30 @@ class UserUpdateView(UpdateView):
         context_data['title'] = f'Изменить профиль: {user_obj}'
         return context_data
 
-
+class UserPasswordChangeView(PasswordChangeView):
+    from_class = UserChangePasswordForm
+    template_name = 'users/user_change_password.html'
+    success_url = reverse_lazy('users:user_profile')
+    extra_context = {
+        'title': 'Изменить пароль'
+    }
 
 # @login_required(login_url='users:user_login')
-# def user_update_view(request):
+# def user_change_password_view(request):
 #     user_object = request.user
+#     form = UserChangePasswordForm(user_object, request.POST)
 #     if request.method == 'POST':
-#         form = UserUpdateForm(request.POST, request.FILES, instance=user_object)
 #         if form.is_valid():
 #             user_object = form.save()
-#             user_object.save()
+#             update_session_auth_hash(request, user_object)
+#             messages.success(request, 'Пароль был успешно изменен!')
 #             return HttpResponseRedirect(reverse('users:user_profile'))
+#         messages.error(request, 'Не удалось изменить пароль')
 #     context = {
-#         'object': user_object,
-#         'title': f'Изменить профиль {user_object}',
-#         'form': UserUpdateForm(instance=user_object),
+#         'form': form,
+#         'title': f'Изменить пароль {user_object}',
 #     }
-#     return render(request, 'users/user_register_update.html', context=context)
-
-
-@login_required(login_url='users:user_login')
-def user_change_password_view(request):
-    user_object = request.user
-    form = UserChangePasswordForm(user_object, request.POST)
-    if request.method == 'POST':
-        if form.is_valid():
-            user_object = form.save()
-            update_session_auth_hash(request, user_object)
-            messages.success(request, 'Пароль был успешно изменен!')
-            return HttpResponseRedirect(reverse('users:user_profile'))
-        messages.error(request, 'Не удалось изменить пароль')
-    context = {
-        'form': form,
-        'title': f'Изменить пароль {user_object}',
-    }
-    return render(request, 'users/user_change_password.html', context=context)
+#     return render(request, 'users/user_change_password.html', context=context)
 
 def user_logout_view(request):
     logout(request)
