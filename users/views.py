@@ -86,9 +86,12 @@ class UserPasswordChangeView(PasswordChangeView):
 #     }
 #     return render(request, 'users/user_change_password.html', context=context)
 
-def user_logout_view(request):
-    logout(request)
-    return redirect('dogs:index')
+class UserLogoutView(LogoutView):
+    pass
+
+# def user_logout_view(request):
+#     logout(request)
+#     return redirect('dogs:index')
 
 
 @login_required(login_url='users:user_login')
