@@ -51,18 +51,26 @@ class DogCreateView(CreateView):
     }
     success_url = reverse_lazy('dogs:dogs_list')
 
+class DogDetailView(DetailView):
+    model = Dog
+    template_name = 'dogs/detail.html'
 
+    def get_context_data(self, **kwargs):
+        context_data = super().get_context_data()
+        dog_obj = self.get_object()
+        context_data['title'] = f'Подробная информация\n{dog_obj}'
+        return context_data
 
-@login_required(login_url='users:user_login')
-def dog_detail_view(request, pk):
-    dog_object = Dog.objects.get(pk=pk)
-    # dog_object = get_object_or_404(Dog, pk=pk)
-    context = {
-        'object': dog_object,
-        'title': f'Вы выбрали: {dog_object}'
-        # 'title': f'Вы выбрали: {dog_object.name}. Порода: {dog_object.breed_name}',
-    }
-    return render(request, 'dogs/detail.html', context)
+# @login_required(login_url='users:user_login')
+# def dog_detail_view(request, pk):
+#     dog_object = Dog.objects.get(pk=pk)
+#     # dog_object = get_object_or_404(Dog, pk=pk)
+#     context = {
+#         'object': dog_object,
+#         'title': f'Вы выбрали: {dog_object}'
+#         # 'title': f'Вы выбрали: {dog_object.name}. Порода: {dog_object.breed_name}',
+#     }
+#     return render(request, 'dogs/detail.html', context)
 
 
 @login_required(login_url='users:user_login')
