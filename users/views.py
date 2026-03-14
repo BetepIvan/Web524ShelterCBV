@@ -23,6 +23,13 @@ class UserRegisterView(CreateView):
         'title': 'Создать аккаунт',
     }
 
+    def form_valid(self, form):
+        self.object = form.save()
+        send_register_email(self.object.email)
+        return super().form_valid(form)
+
+
+
 class UserLoginView(LoginView):
     template_name = 'users/user_login.html'
     form_class = UserLoginForm
@@ -69,22 +76,6 @@ class UserPasswordChangeView(PasswordChangeView):
         'title': 'Изменить пароль'
     }
 
-# @login_required(login_url='users:user_login')
-# def user_change_password_view(request):
-#     user_object = request.user
-#     form = UserChangePasswordForm(user_object, request.POST)
-#     if request.method == 'POST':
-#         if form.is_valid():
-#             user_object = form.save()
-#             update_session_auth_hash(request, user_object)
-#             messages.success(request, 'Пароль был успешно изменен!')
-#             return HttpResponseRedirect(reverse('users:user_profile'))
-#         messages.error(request, 'Не удалось изменить пароль')
-#     context = {
-#         'form': form,
-#         'title': f'Изменить пароль {user_object}',
-#     }
-#     return render(request, 'users/user_change_password.html', context=context)
 
 class UserLogoutView(LogoutView):
     template_name = 'users/user_logout.html'
