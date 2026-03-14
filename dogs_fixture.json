@@ -91,7 +91,7 @@
         "breed": 4,
         "photo": "dogs/чиуахуа_2.jpg",
         "birth_date": "2021-10-27",
-        "owner": 5
+        "owner": 1
     }
 },
 {
@@ -102,7 +102,7 @@
         "breed": 3,
         "photo": "dogs/кинг_чарльз_спаниель.jpg",
         "birth_date": "2023-08-08",
-        "owner": 6
+        "owner": 2
     }
 },
 {
@@ -113,7 +113,7 @@
         "breed": 5,
         "photo": "dogs/джек_рассел_2.jpg",
         "birth_date": null,
-        "owner": 12
+        "owner": 3
     }
 }
 ]
