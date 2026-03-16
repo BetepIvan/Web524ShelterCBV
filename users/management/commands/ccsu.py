@@ -9,6 +9,7 @@ class Command(BaseCommand):
         users = {
             'admin': {
                 'email': 'admin@web.top',
+                'role': 'admin',
                 'first_name': 'Admin',
                 'last_name': 'Adminov',
                 'is_staff': True,
@@ -17,6 +18,7 @@ class Command(BaseCommand):
             },
             'moderator': {
                 'email': 'moderator@web.top',
+                'role': 'moderator',
                 'first_name': 'Moder',
                 'last_name': 'Moderov',
                 'is_staff': True,
@@ -25,6 +27,7 @@ class Command(BaseCommand):
             },
             'user': {
                 'email': 'user0@web.top',
+                'role': 'user',
                 'first_name': 'User',
                 'last_name': 'Userov',
                 'is_staff': False,
@@ -35,6 +38,7 @@ class Command(BaseCommand):
         for user, user_params in users.items():
             cr_user = User.objects.create(
                 email=user_params['email'],
+                role=user_params['role'],
                 first_name=user_params['first_name'],
                 last_name=user_params['last_name'],
                 is_staff=user_params['is_staff'],
