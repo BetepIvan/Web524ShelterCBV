@@ -1,3 +1,4 @@
 python-dotenv
 mssql-django
 Pillow
+redis
