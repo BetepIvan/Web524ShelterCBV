@@ -115,5 +115,37 @@
         "birth_date": null,
         "owner": 3
     }
+},
+{
+    "model": "dogs.dog",
+    "pk": 13,
+    "fields": {
+        "name": "Почтальон",
+        "breed": 2,
+        "photo": "dogs/почтальон_колли_PCMwtmm.jpg",
+        "birth_date": "2005-05-05",
+        "owner": 5
+    }
+},
+{
+    "model": "dogs.dog",
+    "pk": 14,
+    "fields": {
+        "name": "дата рождения",
+        "breed": 1,
+        "photo": "dogs/голладская_овчарка.jpg",
+        "birth_date": null,
+        "owner": 5
+    }
+},
+{
+    "model": "dogs.dogparent",
+    "pk": 1,
+    "fields": {
+        "dog": 14,
+        "name": "Бернард",
+        "breed": 1,
+        "birth_date": null
+    }
 }
 ]
