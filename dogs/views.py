@@ -36,6 +36,7 @@ class DogBreedsListView(ListView):
 
     def get_queryset(self):
         queryset = super().get_queryset().filter(breed_id=self.kwargs.get('pk'))
+        queryset = queryset.filter(is_active=True)
         return queryset
 
 
@@ -45,6 +46,11 @@ class DogsListView(ListView):
         'title': 'Питомник все наши собаки'
     }
     template_name = 'dogs/dogs.html'
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        queryset = queryset.filter(is_active=True)
+        return queryset
 
 class DogCreateView(LoginRequiredMixin, CreateView):
     model = Dog
