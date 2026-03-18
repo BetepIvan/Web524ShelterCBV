@@ -20,6 +20,7 @@ class User(AbstractUser):
     avatar = models.ImageField(upload_to='users/', verbose_name='Аватар', **NULLABLE)
     phone = models.CharField(max_length=35, verbose_name='Номер телефона', **NULLABLE)
     telegram = models.CharField(max_length=150, verbose_name='Аккаунт телеграм', **NULLABLE)
+    max_messenger = models.CharField(max_length=150, verbose_name='Аккаунт МАХ', **NULLABLE)
     is_active = models.BooleanField(default=True, verbose_name='Состояние аккаунта')
 
     USERNAME_FIELD = 'email'
