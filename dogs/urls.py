@@ -13,7 +13,7 @@ urlpatterns = [
 
     # dogs
     path('dogs/', DogsListView.as_view(), name='dogs_list'),
-    path('dogs/deactivate', DogsDeactivatedListView.as_view(), name='dogs_list_deactivate'),
+    path('dogs/deactivate', DogsDeactivatedListView.as_view(), name='dogs_list_deactivated'),
     path('dogs/create/', never_cache(DogCreateView.as_view()), name='dog_create'),
     path('dogs/detail/<int:pk>/', DogDetailView.as_view(), name='dog_detail'),
     path('dogs/update/<int:pk>/', never_cache(DogUpdateView.as_view()), name='dog_update'),
