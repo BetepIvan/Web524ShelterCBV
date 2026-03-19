@@ -185,6 +185,7 @@ fabric.properties
 # idea folder, uncomment if you don't need it
 .idea
 
-/users/migrations/
-/dogs/migrations/
+#/users/migrations/
+#/dogs/migrations/
+#/reviews/migrations/
 dump.rdb
