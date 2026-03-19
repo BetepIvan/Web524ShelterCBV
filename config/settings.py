@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'redis',  # установленные приложения
     'users', # мои приложения
     'dogs',
+    'reviews',
 ]
 
 MIDDLEWARE = [
