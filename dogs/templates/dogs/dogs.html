@@ -8,9 +8,15 @@
     {% include 'dogs/includes/inc_dog_card.html' with object=object %}
     {% endfor %}
     </div>
-    <div class="d-flex justify-content-end gap-2 m-2">
-        <a href="{% url 'dogs:dogs_list' %}" class="btn btn-outline-success">Активные собаки</a>
-        <a href="{% url 'dogs:dogs_list_deactivated' %}" class="btn btn-outline-secondary">Неактивные собаки</a>
+    {% include 'dogs/includes/inc_pagination.html' %}
+    <div class="d-flex justify-content-between align-items-center gap-2 m-2">
+        <div>
+            <a href="{% url 'dogs:dog_create' %}" class="btn btn-outline-primary">Добавить собаку</a>
+        </div>
+        <div class="d-flex gap-2">
+            <a href="{% url 'dogs:dogs_list' %}" class="btn btn-outline-success">Активные собаки</a>
+            <a href="{% url 'dogs:dogs_list_deactivated' %}" class="btn btn-outline-secondary">Неактивные собаки</a>
+        </div>
     </div>
 </div>
 

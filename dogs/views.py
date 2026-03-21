@@ -28,6 +28,7 @@ class BreedListView(ListView):
         'title': 'Все наши породы'
     }
     template_name = 'dogs/breeds.html'
+    paginate_by = 3
 
 
 class DogBreedsListView(ListView):
@@ -36,6 +37,7 @@ class DogBreedsListView(ListView):
     extra_context = {
         'title': 'Собаки выбранной породы'
     }
+    paginate_by = 3
 
     def get_queryset(self):
         queryset = super().get_queryset().filter(breed_id=self.kwargs.get('pk'))
@@ -49,6 +51,7 @@ class DogsListView(ListView):
         'title': 'Питомник все наши собаки'
     }
     template_name = 'dogs/dogs.html'
+    paginate_by = 3
 
     def get_queryset(self):
         queryset = super().get_queryset()
@@ -62,6 +65,7 @@ class DogsDeactivatedListView(LoginRequiredMixin, ListView):
         'title': 'Питомник - неактивные собаки'
     }
     template_name = 'dogs/dogs.html'
+    paginate_by = 3
 
     def get_queryset(self):
         queryset = super().get_queryset()
