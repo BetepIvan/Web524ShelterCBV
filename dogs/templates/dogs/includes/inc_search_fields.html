@@ -11,4 +11,10 @@
                type="text"
                placeholder="Поиск по кличке...">
     </form>
+    <form action="{% url 'dogs:all_search' %}" method="get">
+        <input name="q"
+               class="form-control form-control-sm"
+               type="text"
+               placeholder="Поиск...">
+    </form>
 </div>

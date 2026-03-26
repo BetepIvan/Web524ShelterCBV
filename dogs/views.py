@@ -60,6 +60,25 @@ class BreedSearchListView(ListView):
         )
         return object_list
 
+class AllSearchView(ListView):
+    model = Breed
+    template_name = 'dogs/all_search_results.html'
+
+    extra_context = {
+        'title': 'Результат поискового запроса'
+    }
+
+    def get_queryset(self):
+        query = self.request.GET.get('q')
+        dog_object_list = Dog.objects.filter(
+            Q(name__icontains=query)
+        )
+        breed_object_list = Breed.objects.filter(
+            Q(name__icontains=query)
+        )
+        object_list = list(dog_object_list) + list(breed_object_list)
+        return object_list
+
 class DogsListView(ListView):
     model = Dog
     extra_context = {
