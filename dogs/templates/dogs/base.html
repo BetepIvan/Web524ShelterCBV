@@ -49,7 +49,6 @@
                     <div class="col-sm-4 offset-md-1 py-4">
                         <h4>Меню</h4>
                         <ul class="list-unstyled">
-                            {% include 'dogs/includes/inc_search_fields.html' %}
                             <li><a href="{% url 'dogs:index' %}" class="text-white">Главная</a></li>
                             <li><a href="{% url 'dogs:breeds' %}" class="text-white">Породы</a></li>
                             <li><a href="{% url 'dogs:dogs_list' %}" class="text-white">Собаки</a></li>
@@ -79,7 +78,9 @@
                         <circle cx="12" cy="13" r="4"/>
                     </svg>
                     <strong>Питомник</strong>
+
                 </a>
+                {% include 'dogs/includes/inc_search_fields.html' %}
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
