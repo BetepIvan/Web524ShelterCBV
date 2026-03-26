@@ -19,6 +19,7 @@ def send_new_password(email, new_password):
         recipient_list=[email]
     )
 
+
 def send_dog_creation(email, dog_obj):
     send_mail(
         subject='Вы добавили нового питомца',

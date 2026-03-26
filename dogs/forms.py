@@ -20,6 +20,7 @@ class DogForm(StyleFormMixin, forms.ModelForm):
                 raise forms.ValidationError('Собака должна быть моложе 32 лет')
         return cleaned_data
 
+
 class DogCreateForm(DogForm):
     class Meta:
         model = Dog

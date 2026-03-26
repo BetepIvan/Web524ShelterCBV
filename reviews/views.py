@@ -1,8 +1,7 @@
 from django.http import HttpResponseForbidden
 from django.shortcuts import reverse, get_object_or_404, redirect
-from django.template.defaultfilters import title
 from django.views.generic import ListView, CreateView, UpdateView, DetailView, DeleteView
-from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.exceptions import PermissionDenied
 
 
@@ -80,11 +79,11 @@ class ReviewDetailView(DetailView):
         'title': 'Просмотр отзыва'
     }
 
+
 class ReviewUpdateView(LoginRequiredMixin, UpdateView):
     model = Review
     form_class = ReviewForm
     template_name = 'reviews/create_updata.html'
-
 
     def get_success_url(self):
         return reverse('reviews:review_detail', args=[self.kwargs.get('slug')])

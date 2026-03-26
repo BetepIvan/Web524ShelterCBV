@@ -11,8 +11,8 @@ class Review(models.Model):
     slug = models.SlugField(max_length=25, unique=True, db_index=True, verbose_name='URL')
     content = models.TextField(verbose_name='Содержимое')
     created = models.DateTimeField(verbose_name='Создан', auto_now_add=True)
-    sign_of_review = models.BooleanField(default=True, verbose_name='Активность') # не забыть изменить на Fals в релизе
-    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, **NULLABLE, verbose_name='Автор') # смотреть по ТЗ
+    sign_of_review = models.BooleanField(default=True, verbose_name='Активность')  # не забыть изменить на Fals в релизе
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, **NULLABLE, verbose_name='Автор')  # смотреть по ТЗ
     dog = models.ForeignKey(Dog, on_delete=models.CASCADE, related_name='dogs', verbose_name='Собака')
 
     def __str__(self):

@@ -1,12 +1,11 @@
 from django import forms
-from django.contrib.auth.forms import PasswordChangeForm,UserCreationForm, AuthenticationForm
+from django.contrib.auth.forms import PasswordChangeForm, UserCreationForm, AuthenticationForm
 from django.core.exceptions import ValidationError
 from django.contrib.auth import password_validation
 
 
 from users.models import User
 from users.validators import validate_password
-
 
 
 class StyleFormMixin:
@@ -18,7 +17,9 @@ class StyleFormMixin:
             else:
                 field.widget.attrs['class'] = 'form-control'
 
+
 class UserForm(StyleFormMixin, forms.ModelForm):
+
     class Meta:
         model = User
         fields = ('email', 'first_name', 'last_name', 'phone', 'avatar')
@@ -40,8 +41,6 @@ class UserRegisterForm(StyleFormMixin, UserCreationForm):
 
 class UserLoginForm(StyleFormMixin, AuthenticationForm):
     pass
-
-
 
 
 class UserUpdateForm(StyleFormMixin, forms.ModelForm):

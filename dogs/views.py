@@ -1,10 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from django.http import HttpResponseRedirect
 from django.urls import reverse, reverse_lazy
-from django.contrib.auth.decorators import login_required
 from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
-from django.http import Http404
 from django.forms import inlineformset_factory
 from django.core.exceptions import PermissionDenied
 from django.db.models import Q
@@ -22,6 +19,7 @@ def index(request):
         'title': 'Питомник - Главная'
     }
     return render(request, 'dogs/index.html', context)
+
 
 class BreedListView(ListView):
     model = Breed
@@ -60,6 +58,7 @@ class BreedSearchListView(ListView):
         )
         return object_list
 
+
 class AllSearchView(ListView):
     model = Breed
     template_name = 'dogs/all_search_results.html'
@@ -78,6 +77,7 @@ class AllSearchView(ListView):
         )
         object_list = list(dog_object_list) + list(breed_object_list)
         return object_list
+
 
 class DogsListView(ListView):
     model = Dog
@@ -123,6 +123,7 @@ class DogSearchListView(ListView):
             Q(name__icontains=query), is_active=True,
         )
         return object_list
+
 
 class DogCreateView(LoginRequiredMixin, CreateView):
     model = Dog
@@ -209,6 +210,7 @@ class DogUpdateView(LoginRequiredMixin, UpdateView):
     def get_success_url(self):
         return reverse('dogs:dog_detail', args=[self.kwargs.get('pk')])
 
+
 class DogDeleteView(PermissionRequiredMixin, DeleteView):
     model = Dog
     template_name = 'dogs/delete.html'
@@ -221,6 +223,7 @@ class DogDeleteView(PermissionRequiredMixin, DeleteView):
         dog_object = self.get_object()
         context_data['title'] = f'Удалить\n{dog_object}'
         return context_data
+
 
 def dog_toggle_activity(request, pk):
     dog_object = get_object_or_404(Dog, pk=pk)

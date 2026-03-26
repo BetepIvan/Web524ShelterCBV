@@ -6,7 +6,7 @@ from users.views import UserRegisterView, UserLoginView, UserProfileView, UserLo
 app_name = UsersConfig.name
 
 urlpatterns = [
-#   работа с аккаунтом
+    # работа с аккаунтом
     path('', UserLoginView.as_view(), name='user_login'),
     path('logout/', UserLogoutView.as_view(), name='user_logout'),
     path('register/', UserRegisterView.as_view(), name='user_register'),
@@ -15,7 +15,7 @@ urlpatterns = [
     path('change_password/', UserPasswordChangeView.as_view(), name='user_change_password'),
     path('profile/change_password/', user_generate_new_password_view, name='user_generate_password'),
 
-#   просмотр других пользователей
+    # просмотр других пользователей
     path('all_users/', UserListView.as_view(), name='users_list'),
     path('user/<int:pk>/', UserDetailView.as_view(), name='user_detail'),
 ]
