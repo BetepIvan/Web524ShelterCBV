@@ -3,26 +3,36 @@
 
 {% block content %}
 <div class="container">
-    <div class="row">
-        {% if object_list %}
+    {% if object_list %}
+        <!-- Ряд с собаками -->
+        <h3 class="mb-3">Собаки</h3>
+        <div class="row">
             {% for object in object_list %}
                 {% if object|class_name == 'Dog' %}
-                    <!-- Карточка собаки -->
                     {% include 'dogs/includes/inc_dog_card.html' with object=object %}
-                {% elif object|class_name == 'Breed' %}
-                    <!-- Карточка породы -->
+                {% endif %}
+            {% endfor %}
+        </div>
+
+        <!-- Ряд с породами -->
+        <h3 class="mb-3">Породы</h3>
+        <div class="row">
+            {% for object in object_list %}
+                {% if object|class_name == 'Breed' %}
                     {% include 'dogs/includes/inc_breed.html' with object=object %}
                 {% endif %}
             {% endfor %}
-        {% else %}
+        </div>
+    {% else %}
+        <div class="row">
             <div class="col-12 text-center py-5">
                 <h3>Ничего не найдено</h3>
                 <p class="text-muted">Попробуйте изменить поисковый запрос</p>
                 <a href="{% url 'dogs:index' %}" class="btn btn-outline-primary mt-3">Вернуться на главную</a>
             </div>
-        {% endif %}
-    </div>
-    
+        </div>
+    {% endif %}
+
     {% if is_paginated %}
         {% include 'dogs/includes/inc_pagination.html' %}
     {% endif %}
