@@ -16,7 +16,8 @@ from users.models import UserRoles
 def index(request):
     context = {
         'object_list': Breed.objects.all()[:3],
-        'title': 'Питомник - Главная'
+        'title': 'Питомник - Главная',
+        'description': 'Добро пожаловать в наш питомник! Здесь вы найдете лучшие породы собак, информацию о каждой из них, а также сможете выбрать себе верного друга.'
     }
     return render(request, 'dogs/index.html', context)
 
@@ -24,7 +25,8 @@ def index(request):
 class BreedListView(ListView):
     model = Breed
     extra_context = {
-        'title': 'Все наши породы'
+        'title': 'Все наши породы',
+        'description': 'Наши племенные собаки и подопечные приюта — все в одном месте. Изучайте породы, знакомьтесь с характерами и выбирайте ту собаку, которая отзовется вашему сердцу.'
     }
     template_name = 'dogs/breeds.html'
     paginate_by = 3
@@ -82,7 +84,8 @@ class AllSearchView(ListView):
 class DogsListView(ListView):
     model = Dog
     extra_context = {
-        'title': 'Питомник все наши собаки'
+        'title': 'Все наши собаки',
+        'description': 'Каждая собака в нашем приюте ждет своего человека. Большие и маленькие, породистые и нет — мы расскажем о характере каждой, чтобы вы нашли идеального друга.'
     }
     template_name = 'dogs/dogs.html'
     paginate_by = 3

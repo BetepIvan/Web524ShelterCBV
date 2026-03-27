@@ -40,6 +40,9 @@ class UserProfileView(DetailView):
     model = User
     form_class = UserForm
     template_name = 'users/user_profile_read_only.html'
+    extra_context = {
+        'hide_jumbotron': True
+    }
 
     def get_object(self, queryset=None):
         return self.request.user
@@ -56,6 +59,9 @@ class UserUpdateView(UpdateView):
     form_class = UserUpdateForm
     template_name = 'users/user_register_update.html'
     success_url = reverse_lazy('users:user_profile')
+    extra_context = {
+        'hide_jumbotron': True
+    }
 
     def get_object(self, queryset=None):
         return self.request.user
@@ -72,8 +78,17 @@ class UserPasswordChangeView(PasswordChangeView):
     template_name = 'users/user_change_password.html'
     success_url = reverse_lazy('users:user_profile')
     extra_context = {
-        'title': 'Изменить пароль'
+        'hide_jumbotron': True
     }
+
+    def get_object(self, queryset=None):
+        return self.request.user
+
+    def get_context_data(self, **kwargs):
+        context_data = super().get_context_data()
+        user_obj = self.get_object()
+        context_data['title'] = f'Изменить пароль: {user_obj}'
+        return context_data
 
 
 class UserLogoutView(LogoutView):
@@ -100,6 +115,9 @@ class UserListView(LoginRequiredMixin, ListView):
 class UserDetailView(DetailView):
     model = User
     template_name = 'users/user_detail.html'
+    extra_context = {
+        'hide_jumbotron': True
+    }
 
     def get_context_data(self, **kwargs):
         context_data = super().get_context_data()

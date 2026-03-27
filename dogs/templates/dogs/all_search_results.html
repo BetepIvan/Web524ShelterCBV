@@ -1,9 +1,30 @@
-<h1> Search Results </h1>
+{% extends 'dogs/base.html' %}
+{% load my_tags %}
 
-<ul>
-    {% for object in object_list %}
-    <li>
-        {{ object }}
-    </li>
-    {% endfor %}
-</ul>
+{% block content %}
+<div class="container">
+    <div class="row">
+        {% if object_list %}
+            {% for object in object_list %}
+                {% if object|class_name == 'Dog' %}
+                    <!-- Карточка собаки -->
+                    {% include 'dogs/includes/inc_dog_card.html' with object=object %}
+                {% elif object|class_name == 'Breed' %}
+                    <!-- Карточка породы -->
+                    {% include 'dogs/includes/inc_breed.html' with object=object %}
+                {% endif %}
+            {% endfor %}
+        {% else %}
+            <div class="col-12 text-center py-5">
+                <h3>Ничего не найдено</h3>
+                <p class="text-muted">Попробуйте изменить поисковый запрос</p>
+                <a href="{% url 'dogs:index' %}" class="btn btn-outline-primary mt-3">Вернуться на главную</a>
+            </div>
+        {% endif %}
+    </div>
+    
+    {% if is_paginated %}
+        {% include 'dogs/includes/inc_pagination.html' %}
+    {% endif %}
+</div>
+{% endblock %}

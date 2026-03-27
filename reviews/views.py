@@ -14,7 +14,8 @@ from users.models import UserRoles
 class ReviewListView(ListView):
     model = Review
     extra_context = {
-        'title': 'Наши отзывы'
+        'title': 'Наши отзывы',
+        'description': 'Слова благодарности от тех, кто уже выбрал нас. Реальные отзывы, искренние эмоции и истории дружбы, которые согревают. Присоединяйтесь к нашей большой семье.'
     }
     template_name = 'reviews/reviews.html'
     paginate_by = 3
