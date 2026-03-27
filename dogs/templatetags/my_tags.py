@@ -9,7 +9,7 @@ def dogs_media(val):
         return fr'/media/{val}'
     return '/static/dummydog.jpg'
 
+
 @register.filter
 def class_name(obj):
-    """Возвращает имя класса объекта"""
     return obj.__class__.__name__
